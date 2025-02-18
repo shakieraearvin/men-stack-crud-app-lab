@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose"); // require package
 const methodOverride = require("method-override");
 const morgan = require("morgan");
-
+const path = require("path");
 
 const app = express();
 
@@ -18,8 +18,9 @@ const Cheese = require("./models/cheese.js");
 // middleware 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 
+app.use(express.static(path.join(__dirname, "public")));
 
 
 // GET /
@@ -34,10 +35,10 @@ app.get("/", async (req, res) => {
   });
   
 app.get("/cheeses/new", (req, res) => {
-    res.render("fruits/new.ejs");
+    res.render("cheeses/new.ejs");
   });
 
-app.get("/cheeses/:id", async (req, res) => {
+app.get("/cheeses/:cheeseId", async (req, res) => {
     const foundCheese = await Cheese.findById(req.params.cheeseId);
     res.render("cheeses/show.ejs", { cheese: foundCheese });
   });

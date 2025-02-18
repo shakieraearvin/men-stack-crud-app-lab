@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>
         <%= cheese.name %>
-    </title> 
+    </title>
 </head>
 
 <body>
@@ -24,7 +25,9 @@
                     <button type="submit">Delete <%= cheese.name %></button>
                 </form>
                 <a href="/cheeses/<%= cheese._id %>/edit">Edit <%= cheese.name %></a>
-                <a href="/cheeses">Back to Cheeses</a>
+                <a class="cheeses-index-link" href="/cheeses">
+                    <div class="index-link-text">Back to Cheeses</div>
+                </a>
 
 </body>
 
